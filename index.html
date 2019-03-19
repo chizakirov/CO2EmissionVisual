@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CO2 Emissions Comparables</title>
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="bars.js"></script>
+    <style tyle="text/css">
+      /* div {
+        display: inline-block;
+        width: 2px;
+        /* height: 50px; */
+        /* vertical-align: bottom;
+        margin-right: 1px;
+        border: 2px solid rgb(245, 168, 168);
+        color: black;
+      } */
+
+      /* div {
+        margin: 20px;
+        border: 2px solid black;
+        height: 40px;
+        /* line-height: 40px; */
+        /* color: white;
+        font-weight: bold;
+        font-size: 40px;
+        text-align: right;
+      } */
+    body{
+      text-align: center;
+    }
+    .line-chart{
+      border: 1px solid lightgray;
+    }
+    input{
+      border-radius: 5px;
+      height: 30px;
+      width: 200px;
+    }
+    div{
+      margin: 20px;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h3>Search by Location</h3>
+      <input type="text" id="myInput" onkeyup="Search()" placeholder="Enter a location's name">
+    </div>
+    
+    <div>
+      <h2 id="search-result"></h2>
+      <svg class="line-chart"></svg>
+    </div>
+    
+  </body>
+  
+</html>
