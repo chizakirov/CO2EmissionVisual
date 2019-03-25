@@ -50,17 +50,21 @@ function parseData(data){
       countryArray.push(data[i].NAME);
       console.log("country/state/county name ", data[i].NAME);
       console.log("population ", data[i].POPULATION);
-      document.getElementById("search-result").innerHTML = "CO2 Emission Comparables to " + data[i].NAME;
+      document.getElementById("search-result").innerHTML = "CO2 Emission with Population Comparable to " + data[i].NAME;
       var popMax = data[i].POPULATION * 1.3;
       var popMin = data[i].POPULATION * 0.9;
     }
-    if(data[i].POPULATION <= popMax && data[i].POPULATION >= popMin){
+    if(data[i].POPULATION <= popMax && data[i].POPULATION >= popMin && data[i].NAME != ""){
       resultArray.push({
-        population: +data[i].POPULATION/1000000, //convert string to number
+        id: +i,
+        country: data[i].NAME,
+        population: +data[i].POPDENSITY/1000000, //convert string to number
         carbon: +data[i].CARBON
       });
     }
   };
+
+  //sort array of objects
   function compare(a, b){
     const popA = a.population;
     const popB = b.population;
@@ -131,15 +135,15 @@ function drawChart(data){
     .attr("d", line);
 }
 
-function Search(){
+function Search(data){
   var input, filter, ul, li, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase(); //search term, convert it to upper case
   ul = document.getElementById("myUL");
   li = ul.getElementsByTagName("li");
 
-  for(i = 0; i < li.length; i++){
-    a = li[i].getElementsByTagName("a")[0]; //first letter of each li text
+  for(i = 0; i < data.length; i++){
+    a = data[i].getElementsByTagName("a")[0]; //first letter of each li text
     txtValue = a.textContent || a.innerHTML; //grab the entire li text
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";
