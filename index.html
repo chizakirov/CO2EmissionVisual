@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CO2 Emissions Comparables</title>
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://d3js.org/d3.v5.js"></script>
-    <script src="bars.js"></script>
+    <script src = "https://d3js.org/d3.v5.js"></script>
+    <link rel = "stylesheet" type = "text/css" href = "./style.css">
     <style tyle="text/css">
       /* div {
         display: inline-block;
@@ -33,7 +33,7 @@
       text-align: center;
     }
     .line-chart{
-      border: 1px solid lightgray;
+      border: 1px solid lightcyan;
     }
     input{
       border-radius: 5px;
@@ -43,20 +43,35 @@
     div{
       margin: 20px;
     }
+
+
     </style>
   </head>
 
   <body>
     <div>
-      <h3>Search by Location</h3>
-      <input type="text" id="myInput" onkeyup="Search()" placeholder="Enter a location's name">
+      <h1>Carbon Emission Comparables</h1>
+      <form>
+        <div>
+          <label>Enter a country/state/county name: </label><br>
+          <input type="text" id="myInput">
+        </div>
+        <div>
+          <button class="search btn btn-success">Search</button>
+        </div>
+      </form>
     </div>
     
     <div>
-      <h2 id="search-result"></h2>
+      <h3 id="search-result"></h3>
       <svg class="line-chart"></svg>
     </div>
-    
+
+
+    <div id="scatterplot-stats">
+    </div>
+        
+    <script src="bars.js"></script>
   </body>
   
 </html>
