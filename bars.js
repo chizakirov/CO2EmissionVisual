@@ -91,28 +91,6 @@ function Search(data, filter){
       console.log("no search result");
     }
 
-// function parseData(data){
-//   var resultArray = [];
-//   var countryArray = [];
-//   for(i = 0; i < data.length; i++){
-//     if(data[i].NAME == "Malaysia"){
-//       countryArray.push(data[i].NAME);
-//       console.log("country/state/county name ", data[i].NAME);
-//       console.log("population ", data[i].POPULATION);
-//       document.getElementById("search-result").innerHTML = "CO2 Emission with Population Comparable to " + data[i].NAME;
-//       var popMax = data[i].POPULATION * 1.3;
-//       var popMin = data[i].POPULATION * 0.9;
-//     }
-//     if(data[i].POPULATION <= popMax && data[i].POPULATION >= popMin && data[i].NAME != ""){
-//       resultArray.push({
-//         id: +i,
-//         country: data[i].NAME,
-//         population: +data[i].POPDENSITY/1000000, //convert string to number
-//         carbon: +data[i].CARBON
-//       });
-//     }
-//   };
-
   //sort array of objects
   function compare(a, b){
     const popA = a.population;
@@ -128,6 +106,11 @@ function Search(data, filter){
   
   var sortedSearchData = resultArray.sort(compare);
   console.log("population list ", resultArray);
+  let output;
+  for(var i = 0; i < sortedSearchData.length; i++){
+    output += `<li>Country: ${sortedSearchData[i].country}, Population: ${sortedSearchData[i].population} </li>`;
+  }
+  document.getElementById("countries").innerHTML = output;
   return sortedSearchData;
 };
 
