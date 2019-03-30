@@ -106,9 +106,9 @@ function Search(data, filter){
   
   var sortedSearchData = resultArray.sort(compare);
   console.log("population list ", resultArray);
-  let output;
+  let output = "";
   for(var i = 0; i < sortedSearchData.length; i++){
-    output += `<li>Country: ${sortedSearchData[i].country}, Population: ${sortedSearchData[i].population}Millions</li>`;
+    output += `<li><b>Country</b>: ${sortedSearchData[i].country}, <b>Population</b>: ${sortedSearchData[i].population} (Millions), <b>Carbon</b>: ${sortedSearchData[i].carbon} (million tons ?!)</li>`;
   }
   document.getElementById("countries").innerHTML = output;
   return sortedSearchData;
