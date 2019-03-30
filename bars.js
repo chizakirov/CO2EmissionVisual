@@ -91,27 +91,27 @@ function Search(data, filter){
       console.log("no search result");
     }
 
-function parseData(data){
-  var resultArray = [];
-  var countryArray = [];
-  for(i = 0; i < data.length; i++){
-    if(data[i].NAME == "Malaysia"){
-      countryArray.push(data[i].NAME);
-      console.log("country/state/county name ", data[i].NAME);
-      console.log("population ", data[i].POPULATION);
-      document.getElementById("search-result").innerHTML = "CO2 Emission with Population Comparable to " + data[i].NAME;
-      var popMax = data[i].POPULATION * 1.3;
-      var popMin = data[i].POPULATION * 0.9;
-    }
-    if(data[i].POPULATION <= popMax && data[i].POPULATION >= popMin && data[i].NAME != ""){
-      resultArray.push({
-        id: +i,
-        country: data[i].NAME,
-        population: +data[i].POPDENSITY/1000000, //convert string to number
-        carbon: +data[i].CARBON
-      });
-    }
-  };
+// function parseData(data){
+//   var resultArray = [];
+//   var countryArray = [];
+//   for(i = 0; i < data.length; i++){
+//     if(data[i].NAME == "Malaysia"){
+//       countryArray.push(data[i].NAME);
+//       console.log("country/state/county name ", data[i].NAME);
+//       console.log("population ", data[i].POPULATION);
+//       document.getElementById("search-result").innerHTML = "CO2 Emission with Population Comparable to " + data[i].NAME;
+//       var popMax = data[i].POPULATION * 1.3;
+//       var popMin = data[i].POPULATION * 0.9;
+//     }
+//     if(data[i].POPULATION <= popMax && data[i].POPULATION >= popMin && data[i].NAME != ""){
+//       resultArray.push({
+//         id: +i,
+//         country: data[i].NAME,
+//         population: +data[i].POPDENSITY/1000000, //convert string to number
+//         carbon: +data[i].CARBON
+//       });
+//     }
+//   };
 
   //sort array of objects
   function compare(a, b){
@@ -132,28 +132,28 @@ function parseData(data){
 };
 
 function drawChart(data){
-  // var svgWidth = 800, svgHeight = 400;
-  // var margin = { top: 20, right: 20, bottom: 30, left: 50 };
-  // var width = svgWidth - margin.left - margin.right;
-  // var height = svgHeight - margin.top - margin.bottom;
-  // var svg = d3.select('svg')
-  //   .attr("width", svgWidth)
-  //   .attr("height", svgHeight);
+  var svgWidth = 800, svgHeight = 400;
+  var margin = { top: 20, right: 20, bottom: 30, left: 50 };
+  var width = svgWidth - margin.left - margin.right;
+  var height = svgHeight - margin.top - margin.bottom;
+  var svg = d3.select('svg')
+    .attr("width", svgWidth)
+    .attr("height", svgHeight);
 
-    var margin = { top: 60, left: 60, bottom: 60, right: 90 } 
-    var height = 480, width = 780;
+    // var margin = { top: 60, left: 60, bottom: 60, right: 90 } 
+    // var height = 480, width = 780;
     
-    //The next section declares the functions linear and scale
-    var y = d3.scale.linear().range([0, height]);
-    var x = d3.time.scale().range([0, width]);
+    // //The next section declares the functions linear and scale
+    // var y = d3.scale.linear().range([0, height]);
+    // var x = d3.time.scale().range([0, width]);
     
-    //The declarations for our two axes are relatively simple
-    //show data (nums) under the x-axis line
-    var xAxis = d3.svg.axis().scale(x).orient("bottom")
-        .ticks(d3.time.seconds, 30)
-        .tickFormat(ft);
-    //show data (nums) left of the y-axis line
-    var yAxis = d3.svg.axis().scale(y).orient("left");
+    // //The declarations for our two axes are relatively simple
+    // //show data (nums) under the x-axis line
+    // var xAxis = d3.svg.axis().scale(x).orient("bottom")
+    //     .ticks(d3.time.seconds, 30)
+    //     .tickFormat(ft);
+    // //show data (nums) left of the y-axis line
+    // var yAxis = d3.svg.axis().scale(y).orient("left");
     
   
   /* 
@@ -161,69 +161,69 @@ function drawChart(data){
   * and appends an svg object to it of the size 
   * that we have set up with our width, height and margin’s.
   */
-    var svg = d3.select("#scatterplot-stats").append("svg")
-        .attr("height", height + margin.top + margin.bottom)
-        .attr("width", width + margin.left + margin.right);
+    // var svg = d3.select("#scatterplot-stats").append("svg")
+    //     .attr("height", height + margin.top + margin.bottom)
+    //     .attr("width", width + margin.left + margin.right);
     
-    svg.append("rect")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .attr("x", 0)
-          .attr("y", 0)
-          .attr("fill", "white")
-          .attr("fill-opacity", 0.8);
-    // It also adds a g element that provides a reference point for adding our axes.  
-    svg = svg.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // svg.append("rect")
+    //       .attr("width", width + margin.left + margin.right)
+    //       .attr("height", height + margin.top + margin.bottom)
+    //       .attr("x", 0)
+    //       .attr("y", 0)
+    //       .attr("fill", "white")
+    //       .attr("fill-opacity", 0.8);
+    // // It also adds a g element that provides a reference point for adding our axes.  
+    // svg = svg.append("g")
+    //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    //declair the tooltip
-    var tooltip = d3.select("#scatterplot-stats").append("div")
-        .attr("class", "tooltip");
+    // //declair the tooltip
+    // var tooltip = d3.select("#scatterplot-stats").append("div")
+    //     .attr("class", "tooltip");
     
    
     /*
     * If doping allegiance make the circle red else make it orange
     */
-    function doping(arg) {
-      return arg !== "" ? "red" : "orange";
-    }
+    // function doping(arg) {
+    //   return arg !== "" ? "red" : "orange";
+    // }
     
     /* 
     * this function is like mouse over. 
     * If we place the mouse over a circle the tooltip is going to show up.
     */
-    function showToolTip(d, i) {
-      tooltip.style({
-        "height": "125px",
-        "width": "200px",
-        "opacity": 0.9
-      });
-      var circle = d3.event.target; 
-      var tippadding = 5, tipsize = { 
-        dx: parseInt(tooltip.style("width")), 
-        dy: parseInt(tooltip.style("height")) 
-      };
+    // function showToolTip(d, i) {
+    //   tooltip.style({
+    //     "height": "125px",
+    //     "width": "200px",
+    //     "opacity": 0.9
+    //   });
+    //   var circle = d3.event.target; 
+    //   var tippadding = 5, tipsize = { 
+    //     dx: parseInt(tooltip.style("width")), 
+    //     dy: parseInt(tooltip.style("height")) 
+    //   };
     
-      tooltip.style({
-          "top": (d3.event.pageY - tipsize.dy - 5) + "px",
-          "left": (d3.event.pageX - tipsize.dx - 5) + "px"
-        }).html("<span><b>" + d.Name + ": " + d.Nationality + "<br/>" + 
-              "Place: " + d.Place + " | Time: " + d.Time + "<br/>" + 
-              "Year: " + d.Year + "<br/><br/>" + 
-              "Doping: " + d.Doping + "</b></span>");
-    }
+    //   tooltip.style({
+    //       "top": (d3.event.pageY - tipsize.dy - 5) + "px",
+    //       "left": (d3.event.pageX - tipsize.dx - 5) + "px"
+    //     }).html("<span><b>" + d.Name + ": " + d.Nationality + "<br/>" + 
+    //           "Place: " + d.Place + " | Time: " + d.Time + "<br/>" + 
+    //           "Year: " + d.Year + "<br/><br/>" + 
+    //           "Doping: " + d.Doping + "</b></span>");
+    // }
     
     /* 
     * This function is like mouse out. 
     * If we mouse out then the tooltip is hidding
     */
-    function hideToolTip(d, i) {
-      tooltip.style({
-        "height": 0,
-        "width": 0,
-        "opacity": 0
-      }).html("");
-    }
+    // function hideToolTip(d, i) {
+    //   tooltip.style({
+    //     "height": 0,
+    //     "width": 0,
+    //     "opacity": 0
+    //   }).html("");
+    // }
     
     /* 
     * This function is like click. 
@@ -241,35 +241,35 @@ function drawChart(data){
     * if error, then throw it
     * else map the time-date in the horizontal axis and the rank-position in the verticall axis
     */
-    d3.json(url, (error, data) => {
-      if(error) {
-        throw new Error("d3.json error");
-      }
-      else {
-        var fastest = d3.min(data.map((item) => { return ft.parse(item.Time); }));
-        var slowest = d3.max(data.map((item) => { return ft.parse(item.Time); }));
+    // d3.json(url, (error, data) => {
+    //   if(error) {
+    //     throw new Error("d3.json error");
+    //   }
+    //   else {
+    //     var fastest = d3.min(data.map((item) => { return ft.parse(item.Time); }));
+    //     var slowest = d3.max(data.map((item) => { return ft.parse(item.Time); }));
         
-        x.domain([slowest, fastest]);
-        y.domain([1, d3.max(data, (d) => { return d.Place; }) + 1]);
-        //Add a "g" element that provides a reference point for adding our axes.
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-          .append("text") //add text to the axis
-            .attr("transform", "translate(" + width + ",-30)")
-            .attr("dy", "1.8em")
-            .attr("text-anchor", "end")
-            .text("Population");
+    //     x.domain([slowest, fastest]);
+    //     y.domain([1, d3.max(data, (d) => { return d.Place; }) + 1]);
+    //     //Add a "g" element that provides a reference point for adding our axes.
+    //     svg.append("g")
+    //         .attr("class", "x axis")
+    //         .attr("transform", "translate(0," + height + ")")
+    //         .call(xAxis)
+    //       .append("text") //add text to the axis
+    //         .attr("transform", "translate(" + width + ",-30)")
+    //         .attr("dy", "1.8em")
+    //         .attr("text-anchor", "end")
+    //         .text("Population");
         
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-          .append("text") //add text to the axis
-            .attr("transform", "rotate(-90)")
-            .attr("dy", "-0.8em")
-            .attr("text-anchor", "end")
-            .text("Carbon");
+        // svg.append("g")
+        //     .attr("class", "y axis")
+        //     .call(yAxis)
+        //   .append("text") //add text to the axis
+        //     .attr("transform", "rotate(-90)")
+        //     .attr("dy", "-0.8em")
+        //     .attr("text-anchor", "end")
+        //     .text("Carbon");
         
         /* 
         * we add the cyclists to our scatterplot
@@ -279,28 +279,28 @@ function drawChart(data){
         * with values for x/y position and height/width as configured in our earlier code.
         * we parse the time and the place
         */ 
-        var cyclist = svg.selectAll(".cyclist")
-            .data(data)
-          .enter().append("g")
-            .attr("class", "cyclist")
-            .attr("x", (d) => { return x(ft.parse(d.Time)); })
-            .attr("y", (d) => { return y(d.Place); });
+        // var cyclist = svg.selectAll(".cyclist")
+        //     .data(data)
+        //   .enter().append("g")
+        //     .attr("class", "cyclist")
+        //     .attr("x", (d) => { return x(ft.parse(d.Time)); })
+        //     .attr("y", (d) => { return y(d.Place); });
         
-        cyclist.append("circle")
-            .attr("cx", (d) => { return x(ft.parse(d.Time)); })
-            .attr("cy", (d) => { return y(d.Place); })
-            .attr("r", 5)
-            .attr("fill", (d) => { return doping(d.Doping); })
-            //call the functions
-            .on("mouseover", showToolTip)
-            .on("mouseout", hideToolTip)
-            .on("click", openEntry);
+        // cyclist.append("circle")
+        //     .attr("cx", (d) => { return x(ft.parse(d.Time)); })
+        //     .attr("cy", (d) => { return y(d.Place); })
+        //     .attr("r", 5)
+        //     .attr("fill", (d) => { return doping(d.Doping); })
+        //     //call the functions
+        //     .on("mouseover", showToolTip)
+        //     .on("mouseout", hideToolTip)
+        //     .on("click", openEntry);
         
         //append the text and fix the distance btw the circles and the names
-        cyclist.append("text")
-            .attr("x", (d) => { return x(ft.parse(d.Time)) + 7; })
-            .attr("y", (d) => { return y(d.Place) + 5; })
-            .text((d) => { return d.Name; });
+        // cyclist.append("text")
+        //     .attr("x", (d) => { return x(ft.parse(d.Time)) + 7; })
+        //     .attr("y", (d) => { return y(d.Place) + 5; })
+        //     .text((d) => { return d.Name; });
         
         //right-bottom explainatory text
         // var isDoped = svg.append("g")
@@ -317,61 +317,57 @@ function drawChart(data){
         //       .attr("y", 5)
         //       .attr("fill", "orange")
         //       .text("* No doping allegiance");
-      } //end of else
+  //     } //end of else
       
-    });
-  }
-  
-  
-  
-  
-  
-//   var g = svg.append("g")
-//               .attr("transform", 
-//               "translate(" + margin.left + "," + margin.top + ")" );
-//   var x = d3.scaleLinear().rangeRound([0, width]);
-//   var y = d3.scaleLinear().rangeRound([height, 0]);
-//   var line= d3.line()
-//               .x(function(d) { return x(d.population)})
-//               .y(function(d) { return y(d.carbon)});
+  //   });
+  // }
 
-//   x.domain(d3.extent(data, function(d) { return d.population; }));
-//   y.domain([0, d3.max(data, function(d) { return d.carbon; })]);
+  var g = svg.append("g")
+              .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")" );
+  var x = d3.scaleLinear().rangeRound([0, width]);
+  var y = d3.scaleLinear().rangeRound([height, 0]);
+  var line= d3.line()
+              .x(function(d) { return x(d.population)})
+              .y(function(d) { return y(d.carbon)});
 
-//   g.append("g")
-//     .attr("transform", "translate(0," + height + ")")
-//     .call(d3.axisBottom(x))
-//     .select(".domain")
-//     .remove();
+  x.domain(d3.extent(data, function(d) { return d.population; }));
+  y.domain([0, d3.max(data, function(d) { return d.carbon; })]);
 
-//   g.append("g")
-//     .call(d3.axisLeft(y))
-//     .append("text")
-//     .attr("fill", "#000")
-//     .attr("transform", "rotate(-90)")
-//     .attr("y", 6)
-//     .attr("dy", "0.71em")
-//     .attr("text-anchor", "end")
-//     .text("Carbon (million tons)");
+  g.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+    .select(".domain")
+    .remove();
+
+  g.append("g")
+    .call(d3.axisLeft(y))
+    .append("text")
+    .attr("fill", "#000")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", "0.71em")
+    .attr("text-anchor", "end")
+    .text("Carbon (million tons)");
 
 
-//   g.append("text")
-//     .call(d3.axisBottom(x))
-//     .attr("transform",
-//             "translate(" + (width/2) + " ," + 
-//                            (height + margin.top + 20) + ")")
-//     .attr("text-anchor", "middle")
-//     .text("Population (million)");
+  g.append("text")
+    .call(d3.axisBottom(x))
+    .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
+    .attr("text-anchor", "middle")
+    .text("Population (million)");
 
-//   g.append("path")
-//     .datum(data)
-//     .attr("fill", "none")
-//     .attr("stroke", "steelblue")
-//     .attr("stroke-linejoin", "round")
-//     .attr("stroke-linecap", "round")
-//     .attr("stroke-width", 1.5)
-//     .attr("d", line);
-// }
+  g.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "steelblue")
+    .attr("stroke-linejoin", "round")
+    .attr("stroke-linecap", "round")
+    .attr("stroke-width", 1.5)
+    .attr("d", line);
+}
 
 // function Search(data){
 //   var input, filter, ul, li, txtValue;
@@ -409,4 +405,4 @@ function drawChart(data){
 //             })
 //             .text(function(t) {return t});
 // });
-
+// }
